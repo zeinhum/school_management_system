@@ -1,0 +1,120 @@
+@model SchoolResultSystem.Web.Areas.Analytics.Models.MarkSheetDto;
+@{
+    ViewData["Title"] = "Marksheet";
+}
+
+<link rel="stylesheet" href="~/css/marksheet.css" />
+
+
+
+<div class="marksheet-container">
+    <header>
+        <div class="logo-area">
+            <img src="your-logo-path.png" alt="School Logo" class="school-logo">
+            <div class="school-name">
+                <h1>@Model.Schoolname</h1>
+                <p>@Model.SchoolAddress</p>
+            </div>
+        </div>
+
+        <div class="grade-sheet-title">GRADE-SHEET</div>
+
+        <div class="student-info">
+            <div class="info-row">
+                <span>THE FOLLOWING ARE THE GRADES OBTAINED BY: <strong>@Model.Student.StudentName</strong></span>
+            </div>
+            <div class="info-row">
+                <span>DATE OF BIRTH: <u>@Model.Student.D_O_B</u> B.S &nbsp;&nbsp; <u>17/02/2004</u> A.D</span>
+            </div>
+            <div class="info-row">
+                @if (Model.Student.RegistrationN != null)
+                {
+                    <span>REGISTRATION NUMBER: <u>@Model.Student.RegistrationN</u></span>
+
+                }
+                <span>SYMBOL NUMBER: <u>@Model.Student.NSN</u></span>
+                <span>@Model.ClassGrade</span>
+            </div>
+            <div class="info-row">
+                <span>IN THE @Model.Exam.ExamName CONDUCTED BY SCHOOL/CAMPUS: @Model.Exam.AcademicYear</span>
+            </div>
+        </div>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+                <th width="10%">SUBJECT CODE</th>
+                <th width="45%">SUBJECTS</th>
+                <th width="10%">CREDIT HOUR</th>
+                <th width="10%">GRADE POINT</th>
+                <th width="10%">GRADE</th>
+                <th width="10%">FINAL GRADE</th>
+                <th width="5%">REMARK</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.gpas)
+            {
+                <tr>
+                    <td>@item.ThSub.SName</td>
+                    <td class="text-left">@item.ThSub.SCode</td>
+                    <td>@item.ThGrade.credithr</td><!-- subject credit hour --!>
+                    <td>@item.ThGrade.Grade</td>
+                    <td>@item.ThGrade.GradePoint</td>
+                    @if (item.ThSub.LinkedPr != null)
+                    {
+                        <tr>
+                            <td>@item.PrSub.SName</td>
+                            <td class="text-left">@item.PrSub.SCode</td>
+                            <td>@item.PrGrade.credithr</td><!-- subject credit hour --!>
+                            <td>@item.PrGrade.Grade</td>
+                            <td>@item.PrGrade.GradePoint</td>
+                            <td rowspan="2">@item.TotalGrade.TotalGrade</td> <!-- obtained Grade--!>
+                        </tr>
+                    }else{
+                        <td rowspan="@item.? 2 : 1">@item.TotalGrade.TotalGrade</td> <!-- obtained Grade--!>
+                    }
+                    
+                    <td></td>
+                </tr>
+            
+            }
+            
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right"><strong>GRADE POINT AVERAGE (GPA)</strong></td>
+                <td colspan="4">@Model.GPA.gpa</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="footer-signatures">
+        <div class="sig-box">
+            <p>PREPARED BY:</p>
+        </div>
+        <div class="sig-box">
+            <p>CHECKED BY</p>
+            <p>CLASS TEACHER</p>
+        </div>
+        <div class="sig-box">
+            <p>HEADMASTER/CAMPUS CHIEF</p>
+        </div>
+    </div>
+
+    <div class="date-issued">
+        DATE OF ISSUE: @DateTime.Now.Date
+    </div>
+
+    <div class="notes">
+        <hr>
+        <p>NOTE: ONE CREDIT HOUR IS 32 CLOCK HOURS</p>
+        <div class="note-columns">
+            <span>TH: THEORY</span>
+            <span>PR: PRACTICAL</span>
+            <span>AB: ABSENT</span>
+            <span>W: WITHHELD</span>
+        </div>
+    </div>
+</div>

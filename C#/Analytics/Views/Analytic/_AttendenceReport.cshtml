@@ -1,0 +1,147 @@
+@model SchoolResultSystem.Web.Areas.Attendence.Models.DisplayAttendenceDto
+@using SchoolResultSystem.Web.Areas.Attendence.Models;
+
+@{
+    var req       = Model.RequestData;
+    var total     = Model.SchoolDays.Count;
+    var present   = Model.Present.Count;
+    var absent    = Model.Absent.Count;
+    var leaves    = Model.LeaveDates.Count;
+    var health    = total > 0 ? (double)present / total * 100 : 0;
+    var healthStr = health.ToString("F1");
+    var CandidateName = req.CandidateName;
+
+    string HealthClass(double h) => h >= 75 ? "good" : h >= 50 ? "warn" : "poor";
+}
+ <link rel="stylesheet" href="~/css/attendenceReport.css" />
+
+<div class="att">
+
+    <!-- ── Header ─────────────────────────────────── -->
+    <div class="att-head">
+        <div>
+            <h2 class="att-head__name">@(!string.IsNullOrEmpty(CandidateName) ? CandidateName : "No Candidate Found With This ID")</h2>
+            <p class="att-head__meta">
+                @req.Target &nbsp;·&nbsp; ID: @req.Code &nbsp;·&nbsp;
+                @req.From.ToString("dd MMM yyyy") – @req.Till.ToString("dd MMM yyyy")
+            </p>
+        </div>
+        <div class="att-health @HealthClass(health)">
+            <span class="att-health__pct">@healthStr<small>%</small></span>
+            <span class="att-health__label">Attendance</span>
+        </div>
+    </div>
+
+    <!-- ── Stats row ──────────────────────────────── -->
+    <div class="att-stats">
+
+        <div class="att-stat att-stat--school">
+            <span class="att-stat__num">@total</span>
+            <span class="att-stat__label">School Days</span>
+        </div>
+
+        <div class="att-stat att-stat--present">
+            <span class="att-stat__num">@present</span>
+            <span class="att-stat__label">Present</span>
+        </div>
+
+        <div class="att-stat att-stat--absent">
+            <span class="att-stat__num">@absent</span>
+            <span class="att-stat__label">Absent</span>
+        </div>
+
+        <div class="att-stat att-stat--leave">
+            <span class="att-stat__num">@leaves</span>
+            <span class="att-stat__label">Leave Days</span>
+        </div>
+
+    </div>
+
+    <!-- ── Visual bar ─────────────────────────────── -->
+    <div class="att-bar-wrap">
+        <div class="att-bar">
+            @if (total > 0)
+            {
+                <div class="att-bar__seg att-bar__seg--present"
+                     style="width:@((double)present/total*100)%"
+                     title="Present @present days"></div>
+                <div class="att-bar__seg att-bar__seg--leave"
+                     style="width:@((double)leaves/total*100)%"
+                     title="Leave @leaves days"></div>
+                <div class="att-bar__seg att-bar__seg--absent"
+                     style="width:@((double)absent/total*100)%"
+                     title="Absent @absent days"></div>
+            }
+        </div>
+        <div class="att-bar-legend">
+            <span><i class="dot dot--present"></i>Present</span>
+            <span><i class="dot dot--leave"></i>Leave</span>
+            <span><i class="dot dot--absent"></i>Absent</span>
+        </div>
+    </div>
+
+    <!-- ── Calendar heatmap ───────────────────────── -->
+    @if (Model.SchoolDays.Any())
+    {
+        var grouped = Model.SchoolDays
+            .GroupBy(d => new { d.Year, d.Month })
+            .OrderBy(g => g.Key.Year).ThenBy(g => g.Key.Month);
+
+        var presentSet = Model.Present.Select(d => d.Date).ToHashSet();
+        var absentSet  = Model.Absent.Select(d => d.Date).ToHashSet();
+        var leaveSet   = Model.LeaveDates.Select(d => d.Date).ToHashSet();
+
+        <div class="att-cal-wrap">
+            <h3 class="att-section-title">School Days</h3>
+            <div class="att-cal-grid">
+                @foreach (var month in grouped)
+                {
+                    <div class="att-month">
+                        <p class="att-month__name">
+                            @(new DateTime(month.Key.Year, month.Key.Month, 1).ToString("MMM yyyy"))
+                        </p>
+                        <div class="att-month__days">
+                            @foreach (var day in month.OrderBy(d => d.Day))
+                            {
+                                string cls = presentSet.Contains(day.Date) ? "p" :
+                                             leaveSet.Contains(day.Date)   ? "l" :
+                                             absentSet.Contains(day.Date)  ? "a" : "";
+                                string tip = day.ToString("dd MMM");
+                                <span class="att-day @cls" title="@tip">@day.Day</span>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+    <!-- ── Absent dates disclosure ────────────────── -->
+    @if (Model.Absent.Any())
+    {
+        <details class="att-disclosure">
+            <summary>View @absent absent date@(absent == 1 ? "" : "s")</summary>
+            <div class="att-disclosure__body">
+                @foreach (var d in Model.Absent.OrderBy(x => x))
+                {
+                    <span class="att-tag att-tag--absent">@d.ToString("dd MMM yyyy")</span>
+                }
+            </div>
+        </details>
+    }
+
+    @if (Model.LeaveDates.Any())
+    {
+        <details class="att-disclosure">
+            <summary>View @leaves leave date@(leaves == 1 ? "" : "s")</summary>
+            <div class="att-disclosure__body">
+                @foreach (var d in Model.LeaveDates.OrderBy(x => x))
+                {
+                    <span class="att-tag att-tag--leave">@d.ToString("dd MMM yyyy")</span>
+                }
+            </div>
+        </details>
+    }
+
+</div>
+<button class="btn-success print" data-action="print">Print Report</button>

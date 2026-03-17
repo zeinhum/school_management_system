@@ -1,0 +1,121 @@
+@model SchoolResultSystem.Web.Areas.Students.Models.GradeReportDto;
+
+@{
+    // Helper: pick CSS class from grade string
+    string GradeClass(string grade) => grade switch
+    {
+        "A+" or "A" => "grade-A",
+        "B+" or "B" => "grade-B",
+        "C+" or "C" => "grade-C",
+        "D" => "grade-D",
+        "AB" => "grade-AB",
+        _ => "grade-NG"
+    };
+}
+
+<link rel="stylesheet" href="~/css/gradesheet.css" />
+
+<div class="gs-wrap">
+
+    <div class="gs-header">
+        <h1>@Model.School.Name</h1>
+        <p>@Model.School.Address</p>
+        <div class="gs-badge">Grade-Sheet</div>
+    </div>
+
+
+    <div class="student-info">
+        <p>THE FOLLOWING ARE THE GRADES OBTAINED BY: @Model.Student.Name.ToUpper()</p>
+
+        <p>DATE OF BIRTH: <strong>@Model.Student.DOB.ToString("yyyy-MM-dd")</strong>, Registration:
+            <strong>@Model.Student.Registration </strong>
+            SYMBOL: <strong>@Model.Student.NSN</strong>, IN THE CLASS
+            @Model.ClassGrade, FOR THE EXAM : <strong>@Model.Exam.ExamName</strong> HELD IN
+            <span><strong>@Model.Exam.AcademicYear</strong> </span>
+
+        </p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Subjects</th>
+                <th>C.Hour</th>
+                <th>G.Point</th>
+                <th>Grade</th>
+                <th>F.Grade</th>
+                <th>Remark</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var subject in Model.Subjects)
+            {
+                bool hasPractical = !string.IsNullOrWhiteSpace(subject.PracticalCode)
+                                    && subject.PracticalCredit > 0;
+
+
+                <tr>
+                    <td>@subject.TheoryCode</td>
+                    <td>@subject.TheoryName <small></small></td>
+                    <td>@subject.TheoryCredit</td>
+                    <td>@subject.TheoryPoint.ToString("0.0")</td>
+                    <td><span class="grade-chip @GradeClass(subject.TheoryGrade)">@subject.TheoryGrade</span></td>
+                    @if (hasPractical)
+                    {
+
+                        <td rowspan="2" style="vertical-align:middle; font-weight:700;">
+                            <span class="grade-chip @GradeClass(subject.CombinedGrade)">@subject.CombinedGrade</span>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <span class="grade-chip @GradeClass(subject.CombinedGrade)">@subject.CombinedGrade</span>
+                        </td>
+                    }
+                    <td></td>
+                </tr>
+
+
+                @if (hasPractical)
+                {
+                    <tr>
+                        <td class="pr-row">@subject.PracticalCode</td>
+                        <td class="pr-row">@subject.PracticalName</td>
+                        <td class="pr-row">@subject.PracticalCredit</td>
+                        <td class="pr-row">@subject.PracticalPoint.ToString("0.0")</td>
+                        <td><span class="grade-chip @GradeClass(subject.PracticalGrade)">@subject.PracticalGrade</span></td>
+                        <td></td>
+                    </tr>
+                }
+            }
+
+
+            <tr class="gpa-row">
+                <td colspan="6">Grade Point Average (GPA)------ @Model.GradePoint.ToString("0.00") &nbsp; @Model.FinalGrade</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <div class="gs-footer">
+        <div>Prepared By</div>
+        <div>Checked By</div>
+        <div>Headmaster / Campus Chief</div>
+    </div>
+
+    <p class="gs-date">Date of Issue: @DateTime.Today.ToString("dd/MM/yyyy")</p>
+
+    <div class="gs-note">
+        <span>NOTE: One credit hour is 32 clock hours</span>
+        
+        <span>AB: Absent &nbsp; W: Withheld</span>
+        <span>NG: Not Graded</span>
+        <span>G.: Grade</span>
+        <span>C.: Credit</span>
+        <span>F.: Final</span>
+    </div>
+
+</div>
