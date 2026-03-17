@@ -67,7 +67,7 @@ Rather than bloating controllers with conditional logic, an **ApiRouter** was bu
 // Central dispatcher — maps operation keys to service handlers
 ```
 
-→ See [`/architecture/ApiRouter.cs`](./architecture/ApiRouter.cs)
+→ See [`/ApiRouter.cs`](./C#/Analytics/ApiRouter.cs)
 
 **Why this matters:** This is a service-layer pattern — controllers stay thin, services stay focused, and adding a new analytics feature means adding a service and registering it with the router, not modifying existing code. Open/Closed Principle in practice.
 
@@ -89,7 +89,7 @@ The analytics module produces:
 // TeacherPerformanceIndex.cs
 ```
 
-→ See [`/analytics/`](./analytics/)
+
 
 ---
 
@@ -132,7 +132,7 @@ Before the full C# system, a Python desktop application was built to replace a f
 # Ingests Excel → validates → produces grade sheets → serves over LAN
 ```
 
-→ See [`/python-grader/grade_processor.py`](./python-grader/grade_processor.py)
+
 
 ---
 
