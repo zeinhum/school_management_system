@@ -67,7 +67,7 @@ Rather than bloating controllers with conditional logic, an **ApiRouter** was bu
 // Central dispatcher — maps operation keys to service handlers
 ```
 
-→ See [`/Dispatcher Architecture`](./C#/Analytics)
+→ See [`/Dispatcher Architecture`](./C%23/Analytics)
 
 **Why this matters:** This is a service-layer pattern — controllers stay thin, services stay focused, and adding a new analytics feature means adding a service and registering it with the router, not modifying existing code. Open/Closed Principle in practice.
 
