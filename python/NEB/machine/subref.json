@@ -1,0 +1,114 @@
+{
+  "ACCOUNTING": {
+    "code": "1031",
+    "Th": 75,
+    "Pr": 25,
+    "theory crh": 3.75,
+    "practical crh": 1.25
+  },
+  "CHILD DEVELOPMENT AND LEARNING": {
+    "code": "1151",
+    "Th": 75,
+    "Pr": 25,
+    "theory crh": 3.75,
+    "practical crh": 1.25
+  },
+  "EDUCATION AND DEVELOPMENT": {
+    "code": "2031",
+    "Th": 75,
+    "Pr": 25,
+    "theory crh": 3.75,
+    "practical crh": 1.25
+  },
+  "BUSINESS STUDIES": {
+    "code": "2151",
+    "Th": 75,
+    "Pr": 25,
+    "theory crh": 3.75,
+    "practical crh": 1.25
+  },
+  "POPULATION STUDIES": {
+    "code": "2231",
+    "Th": 75,
+    "Pr": 25,
+    "theory crh": 3.75,
+    "practical crh": 1.25
+  },
+  "ECONOMICS": {
+    "code": "3031",
+    "Th": 75,
+    "Pr": 25,
+    "theory crh": 3.75,
+    "practical crh": 1.25
+  },
+  "MARKETING": {
+    "code": "3071",
+    "Th": 75,
+    "Pr": 25,
+    "theory crh": 3.75,
+    "practical crh": 1.25
+  },
+  "NEPALI": {
+    "code": "3311",
+    "Th": 75,
+    "Pr": 25,
+    "theory crh": 3.75,
+    "practical crh": 1.25
+  },
+  "ENGLISH": {
+    "code": "3331",
+    "Th": 75,
+    "Pr": 25,
+    "theory crh": 3.75,
+    "practical crh": 1.25
+  },
+  "MATHEMATICS": {
+    "code": "4011",
+    "Th": 75,
+    "Pr": 25,
+    "theory crh": 3.75,
+    "practical crh": 1.25
+  },
+  "HEALTH AND PHYSICAL STUDIES": {
+    "code": "4431",
+    "Th": 75,
+    "Pr": 25,
+    "theory crh": 3.75,
+    "practical crh": 1.25
+  },
+  "SOCIAL STUDIES & LIFE SKILL": {
+    "code": "0051",
+    "Th": 75,
+    "Pr": 25,
+    "theory crh": 3.75,
+    "practical crh": 1.25
+  },
+  "COMPULSORY NEPALI": {
+    "code": "0011",
+    "Th": 75,
+    "Pr": 25,
+    "theory crh": 2.25,
+    "practical crh": 0.75
+  },
+  "COMPULSORY ENGLISH": {
+    "code": "0031",
+    "Th": 75,
+    "Pr": 25,
+    "theory crh": 3.0,
+    "practical crh": 1.0
+  },
+  "SOCIAL STUDIES & LIFE SKILL opt": {
+    "code": "4411",
+    "Th": 75,
+    "Pr": 25,
+    "theory crh": 3.25,
+    "practical crh": 1.25
+  },
+  "MATHEMATICS opt": {
+    "code": "4011",
+    "Th": 75,
+    "Pr": 25,
+    "theory crh": 3.25,
+    "practical crh": 1.25
+  }
+}

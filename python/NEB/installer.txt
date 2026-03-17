@@ -1,0 +1,1 @@
+pyinstaller --noconfirm --onedir --windowed --icon="NEB/astrione.ico" --paths="D:/python/.venv/Lib/site-packages" --add-data "NEB/templates;templates" --add-data "NEB/static;static" --add-data "NEB/excel_data;excel_data" --add-data "NEB;NEB" --hidden-import pandas --hidden-import openpyxl NEB/Aistrone.py

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AISTRONE</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='astrion.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/index.js') }}" type="module"></script>
+</head>
+<body>
+<div class="advert-head">
+    <div class="advert">
+        <h1>A robust app is on the way</h1>
+    <h3>enjoy mini app while you wait</h3>
+    <p>Upload updated excell file and create Grade Sheets. <strong>Note:</strong>use structured excell for this app only</p>
+    <input type="file" >
+    <button class="upload">Upload excel file</button>
+        <p>Set publishing date or go with current date</p>
+        <input type="text" class="date" placeholder="date">
+    </div>
+
+    <div class="sear-bar">
+        <div>
+            <input type="text" class="symbol" placeholder="enter symbol number">
+    <button class="search">Search</button>
+    <button class="print">Print</button>
+        </div>
+        <div>
+
+        </div>
+
+</div>
+</div>
+    <div class="marksheet-container">
+        <header>
+            <div class="logo-area">
+
+                <div class="school-name">
+                    <h1>AISTRONE AI SCHOOL</h1>
+                    <h2><a href="https://www.aistrone.com" target="_blank" rel="noopener noreferrer">visit me</a> </h2>
+                </div>
+            </div>
+
+
+
+            <div class="student-info">
+                <div class="info-row">
+
+                </div>
+                <div class="info-row">
+
+                </div>
+            </div>
+        </header>
+
+    </div>
+<button><a href="/shutdown" class="btn-quit">Shut down server</a></button>
+</body>
+</html>
