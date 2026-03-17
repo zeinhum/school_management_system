@@ -46,7 +46,7 @@ This is implemented as a clean middleware-style pipeline using ASP.NET's `Areas`
 // Intercepts every request, verifies session, resolves role, permits or denies
 ```
 
-→ See [`/architecture/RoleAccessMiddleware.cs`](./architecture/RoleAccessMiddleware.cs)
+
 
 **Why this matters:** Role enforcement at the routing layer means a Teacher cannot reach an Admin endpoint even by crafting a direct URL — the request never arrives at the controller.
 
@@ -67,7 +67,7 @@ Rather than bloating controllers with conditional logic, an **ApiRouter** was bu
 // Central dispatcher — maps operation keys to service handlers
 ```
 
-→ See [`/ApiRouter.cs`](./C#/Analytics/ApiRouter.cs)
+→ See [`/Dispatcher Architecture`](./C#/Analytics)
 
 **Why this matters:** This is a service-layer pattern — controllers stay thin, services stay focused, and adding a new analytics feature means adding a service and registering it with the router, not modifying existing code. Open/Closed Principle in practice.
 
