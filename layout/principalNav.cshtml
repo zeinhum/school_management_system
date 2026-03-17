@@ -1,1 +1,51 @@
 
+@model int;
+
+@{
+    Layout = null;
+    
+}
+
+<script type="module" src="/js/principal/principalNav.js">
+    
+</script>
+
+
+ 
+<div class="right-nav">
+
+    <div class="create-actions">
+        <h3>SERVICES</h3>
+        
+            <button class="redirect" data-to="PrincipalDashboard/Index">Dashboard</button>
+            <button class="partial" data-to="PrincipalDashboard/Analytics"  data-js="Analytics">Analytics</button>
+            <button class="partial" data-to="PrincipalDashboard/Teachers" data-js="moveTeacher">Teachers</button>
+            <button class="partial" data-to="PrincipalDashboard/Classes" >Classes</button>
+            
+            <button class="partial" data-to="PrincipalDashboard/Subjects">Subjects</button>
+            <button class="partial" data-to="PrincipalDashboard/Exams">Exams</button>
+            <button class="partial" data-to="PrincipalDashboard/Students" >Students</button>
+
+    </div>
+
+    <div class="create-actions">
+        <h3>SCHOOL SETUP</h3>
+        <button class="partial" data-to="PrincipalDashboard/SDForm" data-js="sdform">Admission</button>
+        <button class="partial" data-to="SetupPrincipal/CreateTeacher">Teacher Account</button>
+        <button class="partial" data-to="SetupPrincipal/CreateClass" data-js="addClasses">Class</button>
+        <button class="partial" data-to="SetupPrincipal/CreateSubject" data-js="classSubject">Subject</button>
+        <button class="partial" data-to="SetupPrincipal/CreateExam" data-js="examRubrick">Exam</button>
+        <button class="partial" data-to="SetupPrincipal/SetupSchool">School Info</button>
+        <button class="partial" data-to="LeaveCallender/DisplayLeaveCallenderForm" data-js="calendar">Leave Callendar</button>
+    </div>
+    <div class="create-actions">
+        <h3>LEARNING CENTER</h3>
+        <button class="partial" >Publications</button>
+        <button class="external" data-to="https://www.aistrone.com/">About Software ></button>
+    </div>
+    <div class="database">
+        <h3>DATABASE</h3>
+        <button class="danger redirect" data-to="SetupPrincipal/DatabaseManagement">Database</button>
+    </div>
+    
+</div>
