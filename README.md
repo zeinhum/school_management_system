@@ -132,7 +132,7 @@ Before the full C# system, a Python quick fix was made with in few hours of dema
 # Ingests Excel → validates → produces grade sheets → serves over LAN
 ```
 → See [`Python Flask App`](./python)
-→ Download & Run [`Python Flask App`](https://drive.google.com/drive/folders/1jNjZJGCY01xo5RVAouf_ul915WK4y6YB?usp=sharing)
+→ Download & Run [`Python Flask App`](https://drive.google.com/drive/folders/1nUP9eAnMRegKYbthalOb3YETxFZV5LZK?usp=sharing)
 
 ---
 
