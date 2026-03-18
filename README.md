@@ -67,7 +67,7 @@ Rather than bloating controllers with conditional logic, an **ApiRouter** was bu
 // Central dispatcher — maps operation keys to service handlers
 ```
 
-→ See [`/Dispatcher Architecture`](./C%23/Analytics)
+→ See [`/Dispatcher Architecture`](https://github.com/zeinhum/School_Data_Intelligence/tree/main/C%23/Analytics)
 
 **Why this matters:** This is a service-layer pattern — controllers stay thin, services stay focused, and adding a new analytics feature means adding a service and registering it with the router, not modifying existing code. Open/Closed Principle in practice.
 
@@ -109,7 +109,7 @@ The `NavigationManager` class solves this with:
 // Listens via event delegation → routes action → imports module → executes → destroys
 ```
 
-→ See [`navgation`](./javaScript)
+→ See [`navgation`](https://github.com/zeinhum/School_Data_Intelligence/tree/main/javaScript)
 
 **Why this matters:** This replicates what frameworks like React do (component mount/unmount lifecycle, lazy imports) but in ~150 lines of vanilla JS — deliberately, to avoid framework overhead on constrained hardware.
 
@@ -131,7 +131,7 @@ Before the full C# system, a Python quick fix was made with in few hours of dema
 # calculate_grade.py
 # Ingests Excel → validates → produces grade sheets → serves over LAN
 ```
-→ See [`Python Flask App`](./python)
+→ See [`Python Flask App`](https://github.com/zeinhum/School_Data_Intelligence/tree/main/python)
 → Download & Run [`Python Flask App`](https://drive.google.com/drive/folders/1nUP9eAnMRegKYbthalOb3YETxFZV5LZK?usp=sharing)
 
 ---
